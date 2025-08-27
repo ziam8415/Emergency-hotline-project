@@ -50,3 +50,11 @@ for (const callButton of callButtons) {
     historyContainer.appendChild(div);
   });
 }
+
+// clear button
+
+document.getElementById("clear-btn").addEventListener("click", function () {
+  document.getElementById("history-con").innerHTML = "";
+
+  console.log("click clear");
+});
