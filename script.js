@@ -38,11 +38,11 @@ for (const callButton of callButtons) {
     const time = now.toLocaleTimeString();
 
     let div = document.createElement("div");
-    div.innerHTML = `<div class="border-2 border-red-600 py-1 px-2 rounded-xl">
+    div.innerHTML = `<div class="shadow-sm py-1 px-2 rounded-xl bg-[#fafafa]">
               <h2 class=" font-semiBold">${cardTitle}</h2>
               <div class="flex justify-between">
-              <p class="text-gray-400">${cardNumber}</p>
-              <p class="text-gray-400">${time}</p>
+              <p class="text-gray-500">${cardNumber}</p>
+              <p class="">${time}</p>
               </div>
             </div>`;
 
