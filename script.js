@@ -14,31 +14,20 @@ for (let loveButton of loveButtons) {
 // call button
 
 let callButtons = document.getElementsByClassName("call-btn");
-console.log(callButtons);
 for (const callButton of callButtons) {
-  console.log(callButton);
   callButton.addEventListener("click", function (e) {
     let coinNum = Number(getInnerText("coin-num"));
-    coinNum = coinNum - 20;
-    document.getElementById("coin-num").innerText = coinNum;
-    if (coinNum === 0) {
-      for (let btn of callButtons) {
-        console.log(btn);
-        btn.disabled = true;
-        btn.style.backgroundColor = "gray";
-        btn.style.color = "white";
-        btn.style.cursor = "not-allowed";
-      }
-    }
-    let cardElement = e.currentTarget.parentNode.parentNode;
-    let cardImg = cardElement.children[0].children[0].src;
-    let cardTitle = cardElement.children[1].innerText;
-    let cardNumber = cardElement.children[3].innerText;
-    const now = new Date();
-    const time = now.toLocaleTimeString();
+    if (coinNum !== 0) {
+      coinNum = coinNum - 20;
 
-    let div = document.createElement("div");
-    div.innerHTML = `<div class="shadow-sm py-1 px-2 rounded-xl bg-[#fafafa]">
+      let cardElement = e.currentTarget.parentNode.parentNode;
+      let cardTitle = cardElement.children[1].innerText;
+      let cardNumber = cardElement.children[3].innerText;
+      alert("Calling " + cardTitle + " " + cardNumber + "...");
+      const now = new Date();
+      const time = now.toLocaleTimeString();
+      let div = document.createElement("div");
+      div.innerHTML = `<div class="shadow-sm py-1 px-2 rounded-xl bg-[#fafafa]">
               <h2 class=" font-semiBold">${cardTitle}</h2>
               <div class="flex justify-between">
               <p class="text-gray-500">${cardNumber}</p>
@@ -46,8 +35,15 @@ for (const callButton of callButtons) {
               </div>
             </div>`;
 
-    let historyContainer = document.getElementById("history-con");
-    historyContainer.appendChild(div);
+      let historyContainer = document.getElementById("history-con");
+      historyContainer.appendChild(div);
+
+      document.getElementById("coin-num").innerText = coinNum;
+    } else {
+      alert(
+        "You haven't enough coins need at least 20 coins to make a call..."
+      );
+    }
   });
 }
 
@@ -55,6 +51,18 @@ for (const callButton of callButtons) {
 
 document.getElementById("clear-btn").addEventListener("click", function () {
   document.getElementById("history-con").innerHTML = "";
-
-  console.log("click clear");
 });
+
+// copy button
+let copyNum = parseInt(getInnerText("copy-num"));
+let copyBtns = document.getElementsByClassName("copy-btn");
+for (const copyBtn of copyBtns) {
+  copyBtn.addEventListener("click", function (e) {
+    copyNum++;
+    document.getElementById("copy-num").innerText = copyNum;
+    let cardElement = e.currentTarget.parentNode.parentNode;
+    let cardNumber = cardElement.children[3].innerText;
+    navigator.clipboard.writeText(cardNumber);
+    alert("Number coped : " + cardNumber);
+  });
+}
