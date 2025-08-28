@@ -17,7 +17,7 @@ let callButtons = document.getElementsByClassName("call-btn");
 for (const callButton of callButtons) {
   callButton.addEventListener("click", function (e) {
     let coinNum = Number(getInnerText("coin-num"));
-    if (coinNum !== 0) {
+    if (coinNum >= 20) {
       coinNum = coinNum - 20;
 
       let cardElement = e.currentTarget.parentNode.parentNode;
